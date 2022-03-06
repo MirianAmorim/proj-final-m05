@@ -4,12 +4,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { User, Prisma } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtPayload } from 'src/auth/jwt.strategy';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(data: Prisma.UserCreateInput): Promise<User> { //criando user com o prisma
     data.senha = await bcrypt.hash(data.senha,10)

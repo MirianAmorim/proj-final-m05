@@ -16,7 +16,7 @@ export class CreateUserDto extends User {
     example: 'Mirian Amorim',
     description: `O nome será utilizado para identificar o usuário.` ,
   })
-  nome: string;
+  name: string;
 
   @IsEmail()
   email: string;
