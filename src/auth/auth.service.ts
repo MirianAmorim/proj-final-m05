@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt'; //token
-import { Usuario } from '@prisma/client';
-import { UsuarioService } from '../usuario/usuario.service';
+import { User } from '@prisma/client';
+import { UserService } from '../user/user.service';
 import { LoginDto } from './dto/login.dto';
 import { JwtPayload } from './jwt.strategy';
 
 @Injectable()
 export class AuthService {
     constructor (
-        private readonly usuarioService: UsuarioService, //importando service para metodo de login
+        private readonly usuarioService: UserService, //importando service para metodo de login
         private readonly jwtService: JwtService, //criador do token de acesso
         ) {}
 
