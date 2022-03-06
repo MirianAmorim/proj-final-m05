@@ -1,11 +1,16 @@
+import { User } from '../entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
-import { IsDate, IsEmail, IsInt, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import {
+  IsEmail,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 const moment = require("moment");
 
-export class CreateUserDto {
-  @IsNotEmpty()
+export class CreateUserDto extends User {
   @IsString()
   @ApiProperty({
     example: 'Mirian Amorim',
@@ -13,11 +18,14 @@ export class CreateUserDto {
   })
   nome: string;
 
-  @IsNotEmpty()
   @IsEmail()
   email: string;
 
-  @IsNotEmpty()
   @IsString()
+  @MinLength(6)
+  @MaxLength(20)
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'Senha fraca',
+  })
   senha: string;
 }
