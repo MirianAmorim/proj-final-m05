@@ -2,14 +2,15 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
+import { AuthRequest } from './models/AuthRequest';
 
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post()
-    async login(@Body() data: LoginDto){
-        return this.authService.login(data);
+    async login(@Body() req: AuthRequest){
+        return this.authService.login(req.user);
     } //autenticar o login
 
     @Get()

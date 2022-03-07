@@ -1,6 +1,8 @@
 export class User {
-    id?: never;
-  nome: string;
+    id: never;
+  name: string;
   email: string;
   senha: string;
+  categoria: any;
+  categoriaId: never;
 }
