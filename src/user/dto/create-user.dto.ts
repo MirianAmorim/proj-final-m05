@@ -8,8 +8,6 @@ import {
   MinLength,
 } from 'class-validator';
 
-const moment = require("moment");
-
 export class CreateUserDto extends User {
   @IsString()
   @ApiProperty({
@@ -28,4 +26,7 @@ export class CreateUserDto extends User {
     message: 'Senha fraca',
   })
   senha: string;
+
+  @IsString()
+  categoria: any;
 }
