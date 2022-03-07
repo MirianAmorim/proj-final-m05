@@ -67,6 +67,10 @@ export class UserService {
     return await this.prisma.user.findUnique({where: {id}});
   }
 
+  findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+
   async update(id: number, data: UpdateUserDto): Promise<User> {
     data.senha = await bcrypt.hash(data.senha,10)
     return await this.prisma.user.update({data, where: {id}});
